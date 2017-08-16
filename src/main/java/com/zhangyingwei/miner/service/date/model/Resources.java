@@ -4,12 +4,13 @@ package com.zhangyingwei.miner.service.date.model;
  * Created by zhangyw on 2017/8/15.
  */
 public class Resources {
-    private static final Integer FLAG_INIT = 0;
-    private static final Integer FLAG_NOMAL = 1;
-    private static final Integer FLAG_UNVALID = 2;
-    private static final Integer FLAG_DEL = 3;
+    public static final Integer FLAG_INIT = 0;
+    public static final Integer FLAG_NOMAL = 1;
+    public static final Integer FLAG_UNVALID = 2;
+    public static final Integer FLAG_DEL = 3;
     private Integer id;
     private String resources;
+    private String group;
     private String type;
     private String createdate;
     private String updatedate;
@@ -63,11 +64,20 @@ public class Resources {
         this.flag = flag;
     }
 
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
     @Override
     public String toString() {
         return "Resources{" +
                 "id=" + id +
                 ", resources='" + resources + '\'' +
+                ", group='" + group + '\'' +
                 ", type='" + type + '\'' +
                 ", createdate='" + createdate + '\'' +
                 ", updatedate='" + updatedate + '\'' +

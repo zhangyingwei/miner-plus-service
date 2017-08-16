@@ -1,5 +1,6 @@
 package com.zhangyingwei.miner.service;
 
+import com.zhangyingwei.miner.service.exception.MinerException;
 import com.zhangyingwei.miner.service.server.MinerServer;
 
 /**
@@ -7,6 +8,10 @@ import com.zhangyingwei.miner.service.server.MinerServer;
  */
 public class MinerServiceApplication {
     public static void main(String[] args) {
-        new MinerServer().start();
+        try {
+            new MinerServer().start();
+        } catch (MinerException e) {
+            e.printStackTrace();
+        }
     }
 }

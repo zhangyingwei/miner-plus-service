@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selectors >
+<selectors>
+    <selector resources="http://blog.zhangyingwei.com">
+        <rule>article</rule>
+    </selector>
+    <selector resources="http://blog.guoyu.me" >
+        <rule>.article</rule>
+    </selector>
+    <selector resources="http://www.barretlee.com/" >
+        <rule>.post-content</rule>
+    </selector>
+</selectors>

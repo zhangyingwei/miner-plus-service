@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface IResourcesService {
     List<Resources> listNolamResources() throws MinerException;
+
+    void markResourcesAsUnValid(String resources) throws MinerException;
 }
