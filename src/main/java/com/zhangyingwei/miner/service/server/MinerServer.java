@@ -23,7 +23,7 @@ public class MinerServer {
         CockroachConfig config = new CockroachConfig()
                 .setAppName("Miner 服务端")
                 .setStore(MinerStore.class)
-                .setThread(5,5000)
+                .setThread(10,5000)
                 .setAutoClose(true)
                 .setTaskErrorHandler(ErrorHandler.class);
         CockroachContext context = new CockroachContext(config);

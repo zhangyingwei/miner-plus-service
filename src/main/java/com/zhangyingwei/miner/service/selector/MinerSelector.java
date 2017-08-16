@@ -8,6 +8,7 @@ import org.dom4j.QName;
 import org.dom4j.io.SAXReader;
 
 import java.io.File;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ public class MinerSelector {
     }
 
     public Selector getSelector(String key) {
-        return this.selectorMap.get(key);
+        String realKey = URI.create(key).getHost();
+        return this.selectorMap.get(realKey);
     }
 }

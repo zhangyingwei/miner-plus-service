@@ -25,7 +25,7 @@ public class RssContentReader implements ContentReader {
     }
 
     private List<Content> bulidContents(Document doc) {
-        Element root = doc.getRootElement();
+        Element root = doc.getRootElement().element(QName.get("channel"));
         String author = "";
         String sitename = root.elementText(QName.get("title"));
         String site = root.elementText(QName.get("link"));

@@ -23,8 +23,7 @@ public class ResourcesAction {
         List<Resources> res = this.resourcesService.listNolamResources();
         final TaskQueue queue = TaskQueue.of(res.size());
         res.stream().map(item -> {
-            Task task = new Task(item.getResources());
-            task.setGroup(item.getGroup());
+            Task task = new Task(item.getResources(),item.getGroup());
             return task;
         }).forEach(item -> {
             try {

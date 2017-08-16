@@ -20,12 +20,12 @@ public class RssStore implements IStore{
         try {
             List<Content> contents = this.reader.read(taskResponse.getContent());
             TaskQueue queue = TaskQueue.of();
-            contents.stream().filter(body -> body.getUrl()!=null && body.getUrl().trim().length() > 0).sorted((b1,b2) -> b1.getPubdate().compareTo(b2.getPubdate())).limit(20).forEach(body -> {
+            contents.stream().filter(body -> (body.getUrl()!=null && body.getUrl().trim().length() > 0)).sorted((b1,b2) -> b1.getPubdate().compareTo(b2.getPubdate())).limit(20).forEach(body -> {
                 Task task = new Task(body.getUrl());
                 task.setGroup("rssentity");
                 try {
                     queue.push(task);
-                    ContentCache.put(body.getSite(),body);
+                    ContentCache.put(body.getUrl(),body);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -3,7 +3,7 @@ package com.zhangyingwei.miner.service.store;
 import com.zhangyingwei.cockroach.executer.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;
 import com.zhangyingwei.miner.service.selector.MinerSelector;
-import com.zhangyingwei.miner.service.store.istore.RssEntityStore;
+import com.zhangyingwei.miner.service.store.istore.RssContentStore;
 import com.zhangyingwei.miner.service.store.istore.RssStore;
 
 /**
@@ -12,7 +12,7 @@ import com.zhangyingwei.miner.service.store.istore.RssStore;
 public class MinerStore implements IStore {
     private MinerSelector selector = new MinerSelector("selector.xml");
     private IStore rssStore = new RssStore();
-    private IStore rssEntityStore = new RssEntityStore(selector);
+    private IStore rssEntityStore = new RssContentStore(selector);
 
     public void store(TaskResponse taskResponse) throws Exception {
         String group = taskResponse.getTask().getGroup();
