@@ -1,4 +1,4 @@
-package com.zhangyingwei.miner.service.rss.model;
+package com.zhangyingwei.miner.service.content.model;
 
 import org.dom4j.Element;
 import org.dom4j.QName;

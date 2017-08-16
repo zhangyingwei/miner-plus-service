@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE selectors >
+<!DOCTYPE selectors>
 <selectors>
-    <selector resources="http://blog.zhangyingwei.com">
-        <rule>article</rule>
+    <!--<selector key="demo">-->
+        <!--<rule type="and">article</rule>-->
+        <!--<rule type="or">.article</rule>-->
+        <!--<rule type="not">title</rule>-->
+    <!--</selector>-->
+    <selector key="http://blog.zhangyingwei.com">
+        <rule type="is">article</rule>
     </selector>
-    <selector resources="http://blog.guoyu.me" >
-        <rule>.article</rule>
+    <selector key="http://blog.guoyu.me" >
+        <rule type="is">.article</rule>
     </selector>
-    <selector resources="http://www.barretlee.com/" >
-        <rule>.post-content</rule>
+    <selector key="http://www.barretlee.com/" >
+        <rule type="is">.post-content</rule>
     </selector>
 </selectors>

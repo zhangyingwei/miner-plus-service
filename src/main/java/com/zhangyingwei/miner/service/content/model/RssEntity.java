@@ -1,12 +1,10 @@
-package com.zhangyingwei.miner.service.rss.model;
+package com.zhangyingwei.miner.service.content.model;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
-import org.dom4j.QName;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by zhangyw on 2017/8/16.
