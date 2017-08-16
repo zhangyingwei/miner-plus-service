@@ -28,6 +28,6 @@ public class RssContentStore implements IStore {
         Elements result = selector.select(taskResponse.getContent());
         Content content = ContentCache.get(key);
         content.setContent(result.toString());
-        System.out.println(content);
+        System.out.println("CONTENT: "+content);
     }
 }

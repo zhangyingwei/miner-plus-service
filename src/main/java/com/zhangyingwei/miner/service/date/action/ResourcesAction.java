@@ -21,7 +21,7 @@ public class ResourcesAction {
     public TaskQueue bulidTaskQueue() throws MinerException {
         System.out.println("INFO: 准备入队...");
         List<Resources> res = this.resourcesService.listNolamResources();
-        final TaskQueue queue = TaskQueue.of(res.size());
+        final TaskQueue queue = TaskQueue.of(1024);
         res.stream().map(item -> {
             Task task = new Task(item.getResources(),item.getGroup());
             return task;

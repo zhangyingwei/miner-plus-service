@@ -23,8 +23,8 @@ public class MinerServer {
         CockroachConfig config = new CockroachConfig()
                 .setAppName("Miner 服务端")
                 .setStore(MinerStore.class)
-                .setThread(10,5000)
-                .setAutoClose(true)
+                .setThread(1, 5000)
+//                .setAutoClose(true)
                 .setTaskErrorHandler(ErrorHandler.class);
         CockroachContext context = new CockroachContext(config);
         TaskQueue queue = this.resourcesAction.bulidTaskQueue();

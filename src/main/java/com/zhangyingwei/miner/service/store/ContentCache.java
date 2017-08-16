@@ -13,10 +13,14 @@ public class ContentCache {
     private static Map<String, Content> rssCache = new HashMap<String, Content>();
 
     public static void put(String key, Content value){
-        rssCache.put(key, value);
+        synchronized (rssCache){
+            rssCache.put(key, value);
+        }
     }
 
     public static Content get(String link){
-        return rssCache.get(link);
+        synchronized (rssCache){
+            return rssCache.get(link);
+        }
     }
 }

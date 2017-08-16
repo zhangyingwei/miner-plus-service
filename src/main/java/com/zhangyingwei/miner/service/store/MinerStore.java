@@ -16,6 +16,7 @@ public class MinerStore implements IStore {
 
     public void store(TaskResponse taskResponse) throws Exception {
         String group = taskResponse.getTask().getGroup();
+        System.out.println("INFO: reveice - " + taskResponse.getTask().getUrl());
         if(GroupEnum.RSS.getName().equals(group)){
             this.rssStore.store(taskResponse);
         } else if (GroupEnum.RSSENTITY.getName().equals(group)) {
