@@ -6,13 +6,13 @@
         <!--<rule type="or">.article</rule>-->
         <!--<rule type="not">title</rule>-->
     <!--</selector>-->
-    <selector key="http://blog.zhangyingwei.com">
-        <rule type="is">article</rule>
+    <selector key="blog.zhangyingwei.com">
+        <rule type="and">article</rule>
     </selector>
-    <selector key="http://blog.guoyu.me" >
-        <rule type="is">.article</rule>
+    <selector key="blog.guoyu.me" >
+        <rule type="and">.article</rule>
     </selector>
-    <selector key="http://www.barretlee.com/" >
-        <rule type="is">.post-content</rule>
+    <selector key="www.barretlee.com" >
+        <rule type="and">.post-content</rule>
     </selector>
 </selectors>
