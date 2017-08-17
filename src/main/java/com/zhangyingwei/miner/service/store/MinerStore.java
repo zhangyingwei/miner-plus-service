@@ -5,18 +5,31 @@ import com.zhangyingwei.cockroach.store.IStore;
 import com.zhangyingwei.miner.service.selector.MinerSelector;
 import com.zhangyingwei.miner.service.store.istore.RssContentStore;
 import com.zhangyingwei.miner.service.store.istore.RssStore;
+import org.apache.log4j.Logger;
+import org.dom4j.DocumentException;
 
 /**
  * Created by zhangyw on 2017/8/15.
  */
 public class MinerStore implements IStore {
-    private MinerSelector selector = new MinerSelector("selector.xml");
-    private IStore rssStore = new RssStore();
-    private IStore rssEntityStore = new RssContentStore(selector);
+    private Logger logger = Logger.getLogger(MinerStore.class);
+    private IStore rssStore;
+    private IStore rssEntityStore;
+
+    public MinerStore() {
+        MinerSelector selector = new MinerSelector("/selector.xml");
+        try {
+            selector.read();
+        } catch (DocumentException e) {
+            logger.error(e.getMessage());
+        }
+        this.rssStore = new RssStore();
+        this.rssEntityStore = new RssContentStore(selector);
+    }
 
     public void store(TaskResponse taskResponse) throws Exception {
         String group = taskResponse.getTask().getGroup();
-        System.out.println("INFO: reveice - " + taskResponse.getTask().getUrl());
+        logger.info("reveice - " + taskResponse.getTask().getUrl());
         if(GroupEnum.RSS.getName().equals(group)){
             this.rssStore.store(taskResponse);
         } else if (GroupEnum.RSSENTITY.getName().equals(group)) {
