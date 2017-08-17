@@ -5,6 +5,7 @@ import com.zhangyingwei.cockroach.executer.TaskQueue;
 import com.zhangyingwei.miner.service.date.model.Resources;
 import com.zhangyingwei.miner.service.date.service.ResourcesService;
 import com.zhangyingwei.miner.service.exception.MinerException;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * Created by zhangyw on 2017/8/16.
  */
 public class ResourcesAction {
+    private Logger logger = Logger.getLogger(ResourcesAction.class);
     private ResourcesService resourcesService;
 
     public ResourcesAction() {
@@ -19,7 +21,7 @@ public class ResourcesAction {
     }
 
     public TaskQueue bulidTaskQueue() throws MinerException {
-        System.out.println("INFO: 准备入队...");
+        logger.info("准备入队...");
         List<Resources> res = this.resourcesService.listNolamResources();
         final TaskQueue queue = TaskQueue.of(1024);
         res.stream().map(item -> {
@@ -29,10 +31,10 @@ public class ResourcesAction {
             try {
                 queue.push(item);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         });
-        System.out.println("INFO: 入队完毕 - " + res.size());
+        logger.info("入队完毕 - " + res.size());
         return queue;
     }
 

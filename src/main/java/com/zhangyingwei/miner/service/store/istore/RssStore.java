@@ -7,6 +7,7 @@ import com.zhangyingwei.cockroach.store.IStore;
 import com.zhangyingwei.miner.service.content.RssContentReader;
 import com.zhangyingwei.miner.service.date.model.Content;
 import com.zhangyingwei.miner.service.store.ContentCache;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
  * Created by zhangyw on 2017/8/16.
  */
 public class RssStore implements IStore{
+    private Logger logger = Logger.getLogger(RssStore.class);
     private RssContentReader reader = new RssContentReader();
     private TaskQueue queue = TaskQueue.of();
 
@@ -32,9 +34,9 @@ public class RssStore implements IStore{
                         return task;
                     }).collect(Collectors.toList());
             this.queue.pushAll(tasks);
-            System.out.println("INFO: pull into queue - "+ tasks.size());
+            logger.info("pull into queue - "+ tasks.size());
         }catch (Exception e){
-            System.out.println("RssStore"+ e.getMessage());
+            logger.error("RssStore"+ e.getMessage());
         }
     }
 }
