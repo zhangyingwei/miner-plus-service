@@ -46,9 +46,16 @@ public class Selector {
 
     public Elements select(String content){
         org.jsoup.nodes.Document document = Jsoup.parse(content);
-        Elements els = document.select(this.gerenateCssQuery());
-        els.select(this.gerenateDeleteCssQuery()).remove();
-        return els;
+        String selectQuery = this.gerenateCssQuery();
+        String deleteQuery = this.gerenateDeleteCssQuery();
+        Elements body = document.select("body");
+        if(selectQuery != null && selectQuery.trim().length() > 0 ){
+            body = body.select(selectQuery);
+        }
+        if(deleteQuery != null && deleteQuery.trim().length() > 0){
+            body.select(this.gerenateDeleteCssQuery()).remove();
+        }
+        return body;
     }
 
     private String gerenateDeleteCssQuery() {
@@ -58,6 +65,10 @@ public class Selector {
     private String gerenateCssQuery() {
         String andQuery = String.join(" ", this.andRules);
         String orQuery = String.join(",", this.orRules);
-        return andQuery + "," + orQuery;
+        String spliter = "";
+        if(orQuery.trim().length() != 0){
+            spliter = ",";
+        }
+        return andQuery + spliter + orQuery;
     }
 }
