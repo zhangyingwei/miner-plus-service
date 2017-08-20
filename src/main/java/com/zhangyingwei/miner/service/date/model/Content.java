@@ -4,6 +4,22 @@ package com.zhangyingwei.miner.service.date.model;
  * Created by zhangyw on 2017/8/16.
  */
 public class Content {
+    /**
+     * 初始
+     */
+    private static final Integer STATE_INIT = 0;
+    /**
+     * 正常
+     */
+    private static final Integer STATE_NOMAL = 1;
+    /**
+     * 失效
+     */
+    private static final Integer STATE_INVALID = 2;
+    /**
+     * 删除
+     */
+    private static final Integer STATE_DEL = 9;
     private Integer id;
     private String author;
     private String sitename;
@@ -14,6 +30,7 @@ public class Content {
     private String pubdate;
     private String getdate;
     private String topic;
+    private Integer state;
 
     public Integer getId() {
         return id;

@@ -2,14 +2,12 @@ package com.zhangyingwei.miner.service.store.istore;
 
 import com.zhangyingwei.cockroach.executer.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;
-import com.zhangyingwei.miner.service.content.RssContentReader;
 import com.zhangyingwei.miner.service.date.model.Content;
 import com.zhangyingwei.miner.service.selector.MinerSelector;
 import com.zhangyingwei.miner.service.selector.model.Selector;
+import com.zhangyingwei.miner.service.service.rss.RssContentAction;
 import com.zhangyingwei.miner.service.store.ContentCache;
 import org.apache.log4j.Logger;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 /**
@@ -21,8 +19,11 @@ public class RssContentStore implements IStore {
 
     private MinerSelector minerSelector;
 
+    private RssContentAction rssContentAction;
+
     public RssContentStore(MinerSelector selector) {
         this.minerSelector = selector;
+        this.rssContentAction = new RssContentAction();
     }
 
     @Override
@@ -32,6 +33,6 @@ public class RssContentStore implements IStore {
         Elements result = selector.select(taskResponse.getContent());
         Content content = ContentCache.get(key);
         content.setContent(result.toString());
-        logger.info("CONTENT: "+content);
+        this.rssContentAction.addNewContent(content);
     }
 }
