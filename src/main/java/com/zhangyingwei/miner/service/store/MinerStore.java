@@ -3,8 +3,8 @@ package com.zhangyingwei.miner.service.store;
 import com.zhangyingwei.cockroach.executer.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;
 import com.zhangyingwei.miner.service.selector.MinerSelector;
-import com.zhangyingwei.miner.service.store.istore.RssContentStore;
-import com.zhangyingwei.miner.service.store.istore.RssStore;
+import com.zhangyingwei.miner.service.store.istore.rss.RssContentStore;
+import com.zhangyingwei.miner.service.store.istore.rss.RssStore;
 import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 

@@ -3,7 +3,7 @@ package com.zhangyingwei.miner.service.store.handler;
 import com.zhangyingwei.cockroach.executer.Task;
 import com.zhangyingwei.cockroach.http.handler.ITaskErrorHandler;
 import com.zhangyingwei.miner.service.date.action.ResourcesAction;
-import com.zhangyingwei.miner.service.exception.MinerException;
+import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import com.zhangyingwei.miner.service.store.GroupEnum;
 import org.apache.log4j.Logger;
 
@@ -26,7 +26,7 @@ public class ErrorHandler implements ITaskErrorHandler {
                 this.resourcesAction.unvalid(task);
             }
             logger.error(""+task.getUrl());
-        } catch (MinerException e) {
+        } catch (MinerServiceException e) {
 //            System.out.println(e.getMessage());
         }
     }

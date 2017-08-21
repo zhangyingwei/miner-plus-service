@@ -4,7 +4,7 @@ import com.zhangyingwei.cockroach.executer.Task;
 import com.zhangyingwei.cockroach.executer.TaskQueue;
 import com.zhangyingwei.miner.service.date.model.Resources;
 import com.zhangyingwei.miner.service.date.service.ResourcesService;
-import com.zhangyingwei.miner.service.exception.MinerException;
+import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -20,12 +20,13 @@ public class ResourcesAction {
         this.resourcesService = new ResourcesService();
     }
 
-    public TaskQueue bulidTaskQueue() throws MinerException {
+    public TaskQueue bulidTaskQueue() throws MinerServiceException {
         logger.info("准备入队...");
         List<Resources> res = this.resourcesService.listNolamResources();
         final TaskQueue queue = TaskQueue.of(1024);
         res.stream().map(item -> {
             Task task = new Task(item.getResources(),item.getGroup());
+            task.setExtr(item);
             return task;
         }).forEach(item -> {
             try {
@@ -38,7 +39,7 @@ public class ResourcesAction {
         return queue;
     }
 
-    public void unvalid(Task task) throws MinerException {
+    public void unvalid(Task task) throws MinerServiceException {
         this.resourcesService.markResourcesAsUnValid(task.getUrl());
     }
 

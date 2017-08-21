@@ -9,10 +9,14 @@
     <selector key="blog.zhangyingwei.com">
         <rule type="and">article</rule>
     </selector>
-    <selector key="blog.guoyu.me" >
-        <rule type="and">.article</rule>
+    <selector key="blog.my-eclipse.cn" >
+        <rule type="and">article</rule>
+        <rule type="not">.visible-xs</rule>
+        <rule type="not">.hidden-xs</rule>
     </selector>
-    <selector key="www.barretlee.com" >
-        <rule type="and">.post-content</rule>
+    <selector key="ibruce.info" >
+        <rule type="and">article</rule>
+        <rule type="not">header</rule>
+        <rule type="not">footer</rule>
     </selector>
 </selectors>

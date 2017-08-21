@@ -22,6 +22,7 @@
     <!-- 在配置文件中 关联包下的 接口类 -->
     <mappers>
         <mapper class="com.zhangyingwei.miner.service.date.mapper.ResourcesMapper"/>
+        <mapper class="com.zhangyingwei.miner.service.date.mapper.ContentMapper"/>
     </mappers>
 
 

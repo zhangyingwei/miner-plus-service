@@ -7,19 +7,19 @@ public class Content {
     /**
      * 初始
      */
-    private static final Integer STATE_INIT = 0;
+    public static final Integer STATE_INIT = 0;
     /**
      * 正常
      */
-    private static final Integer STATE_NOMAL = 1;
+    public static final Integer STATE_NOMAL = 1;
     /**
      * 失效
      */
-    private static final Integer STATE_INVALID = 2;
+    public static final Integer STATE_INVALID = 2;
     /**
      * 删除
      */
-    private static final Integer STATE_DEL = 9;
+    public static final Integer STATE_DEL = 9;
     private Integer id;
     private String author;
     private String sitename;
@@ -112,6 +112,14 @@ public class Content {
         this.topic = topic;
     }
 
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Content{" +
@@ -125,6 +133,7 @@ public class Content {
                 ", pubdate='" + pubdate + '\'' +
                 ", getdate='" + getdate + '\'' +
                 ", topic='" + topic + '\'' +
+                ", state=" + state +
                 '}';
     }
 }

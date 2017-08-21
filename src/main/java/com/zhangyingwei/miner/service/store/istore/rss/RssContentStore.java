@@ -1,4 +1,4 @@
-package com.zhangyingwei.miner.service.store.istore;
+package com.zhangyingwei.miner.service.store.istore.rss;
 
 import com.zhangyingwei.cockroach.executer.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;

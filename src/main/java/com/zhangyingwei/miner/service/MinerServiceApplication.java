@@ -1,6 +1,6 @@
 package com.zhangyingwei.miner.service;
 
-import com.zhangyingwei.miner.service.exception.MinerException;
+import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import com.zhangyingwei.miner.service.server.MinerServer;
 import org.apache.log4j.Logger;
 
@@ -12,7 +12,7 @@ public class MinerServiceApplication {
     public static void main(String[] args) {
         try {
             new MinerServer().start();
-        } catch (MinerException e) {
+        } catch (MinerServiceException e) {
             logger.error(e.getMessage());
         }
     }

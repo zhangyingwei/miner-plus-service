@@ -1,6 +1,7 @@
 package com.zhangyingwei.miner.service.service.rss;
 
 import com.zhangyingwei.miner.service.date.model.Content;
+import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import org.apache.log4j.Logger;
 
 /**
@@ -12,8 +13,22 @@ import org.apache.log4j.Logger;
 public class RssContentAction {
     private Logger logger = Logger.getLogger(RssContentAction.class);
 
-    public void addNewContent(Content content){
-        logger.info(content.getTitle());
+    private RssContentService rssContentService;
+    private RssContentFilter rssContentFilter;
+
+    public RssContentAction() {
+        this.rssContentService = new RssContentService();
+        this.rssContentFilter = new RssContentFilter();
+    }
+
+    public void addNewContent(Content content) {
+        try {
+            logger.info("get new content - "+content.getTitle());
+            content = this.rssContentFilter.filter(content);
+            this.rssContentService.addNewContent(content);
+        } catch (MinerServiceException e) {
+            logger.error(e.getMessage());
+        }
     }
 
 }

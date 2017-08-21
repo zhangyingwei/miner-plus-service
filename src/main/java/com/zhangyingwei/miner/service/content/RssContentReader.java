@@ -8,8 +8,10 @@ import org.dom4j.QName;
 import org.dom4j.io.SAXReader;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -25,19 +27,41 @@ public class RssContentReader implements ContentReader {
     }
 
     private List<Content> bulidContents(Document doc) {
-        Element root = doc.getRootElement().element(QName.get("channel"));
-        String author = "";
-        String sitename = root.elementText(QName.get("title"));
-        String site = root.elementText(QName.get("link"));
-        List<Element> items = root.elements(QName.get("item"));
+        Element root = Optional
+                .ofNullable(doc.getRootElement().element(QName.get("channel")))
+                .orElse(doc.getRootElement());
+
+        String author = root.element("author").elementText("name");
+        String sitename = root.elementText("title");
+
+        String site = Optional
+                .ofNullable(root.elementText("link").length() ==0 ? null:root.elementText("link"))
+                .orElse(root.elementText("id"));
+
+        List<Element> items = root.elements("item");
+        if(items.size() == 0){
+            items = root.elements("entry");
+        }
+
         return items.stream().map(el -> {
             Content content = new Content();
-            content.setAuthor(author);
             content.setSitename(sitename);
             content.setSite(site);
-            content.setUrl(el.elementText(QName.get("link")));
-            content.setTitle(el.elementText(QName.get("title")));
-            content.setPubdate(DateUtils.formateRssDate(el.elementText(QName.get("pubDate"))));
+            content.setUrl(
+                    Optional
+                            .ofNullable(el.elementText("link").length() == 0 ? null : el.elementText("link"))
+                            .orElse(el.element("link").attributeValue("href"))
+            );
+            content.setTitle(el.elementText("title"));
+            content.setAuthor(Optional.ofNullable(author).orElse(content.getSitename()));
+            content.setPubdate(DateUtils.formateRssDate(
+                    Optional
+                            .ofNullable(el.elementText("pubDate"))
+                            .orElse(Optional
+                                    .ofNullable(el.elementText("updated"))
+                                    .orElse(el.elementText("updated"))
+                            )
+            ));
             content.setGetdate(DateUtils.getCurrentDateTime());
             return content;
         }).collect(Collectors.toList());

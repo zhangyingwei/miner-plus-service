@@ -1,4 +1,4 @@
-package com.zhangyingwei.miner.service.store.istore;
+package com.zhangyingwei.miner.service.store.istore.rss;
 
 import com.zhangyingwei.cockroach.executer.Task;
 import com.zhangyingwei.cockroach.executer.TaskQueue;
@@ -6,6 +6,7 @@ import com.zhangyingwei.cockroach.executer.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;
 import com.zhangyingwei.miner.service.content.RssContentReader;
 import com.zhangyingwei.miner.service.date.model.Content;
+import com.zhangyingwei.miner.service.date.model.Resources;
 import com.zhangyingwei.miner.service.store.ContentCache;
 import org.apache.log4j.Logger;
 
@@ -23,8 +24,13 @@ public class RssStore implements IStore{
     @Override
     public void store(TaskResponse taskResponse) {
         try {
+            Resources resources = (Resources) taskResponse.getTask().getExtr();
             List<Content> contents = this.reader.read(taskResponse.getContent());
             List<Task> tasks = contents.stream()
+                    .map(content -> {
+                        content.setTopic(resources.getType());
+                        return content;
+                    })
                     .filter(body -> (body.getUrl() != null && body.getUrl().trim().length() > 0))
                     .sorted((b1, b2) -> b1.getPubdate().compareTo(b2.getPubdate()))
                     .limit(20).map(body -> {

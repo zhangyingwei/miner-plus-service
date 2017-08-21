@@ -4,7 +4,7 @@ import com.zhangyingwei.cockroach.CockroachContext;
 import com.zhangyingwei.cockroach.config.CockroachConfig;
 import com.zhangyingwei.cockroach.executer.TaskQueue;
 import com.zhangyingwei.miner.service.date.action.ResourcesAction;
-import com.zhangyingwei.miner.service.exception.MinerException;
+import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import com.zhangyingwei.miner.service.store.MinerStore;
 import com.zhangyingwei.miner.service.store.handler.ErrorHandler;
 import org.apache.log4j.Logger;
@@ -22,7 +22,7 @@ public class MinerServer {
         this.resourcesAction = new ResourcesAction();
     }
 
-    public void start() throws MinerException {
+    public void start() throws MinerServiceException {
         CockroachConfig config = new CockroachConfig()
                 .setAppName("Miner 服务端")
                 .setStore(MinerStore.class)
