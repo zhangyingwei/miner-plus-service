@@ -33,6 +33,7 @@ public class RssContentStore implements IStore {
         Elements result = selector.select(taskResponse.getContent());
         Content content = ContentCache.get(key);
         content.setContent(result.toString());
+//        logger.info("-----------------"+content);
         this.rssContentAction.addNewContent(content);
     }
 }

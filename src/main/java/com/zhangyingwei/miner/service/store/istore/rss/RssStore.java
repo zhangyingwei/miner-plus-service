@@ -42,7 +42,7 @@ public class RssStore implements IStore{
             this.queue.pushAll(tasks);
             logger.info("pull into queue - "+ tasks.size());
         }catch (Exception e){
-            logger.error("RssStore"+ e.getMessage());
+            logger.error("RssStore - "+ e.getMessage());
         }
     }
 }

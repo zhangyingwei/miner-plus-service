@@ -41,8 +41,11 @@ public class MinerSelector {
     public Selector getSelector(String key) {
         String realKey = URI.create(key).getHost();
         Selector value = this.selectorMap.get(realKey);
-        if(value == null){
-            logger.info("key - " + realKey +" is not found in selector map");
+        if (value == null) {
+            value = this.selectorMap.get("default");
+            if (value == null) {
+                logger.info("key - " + realKey + " is not found in selector map");
+            }
         }
         return value;
     }

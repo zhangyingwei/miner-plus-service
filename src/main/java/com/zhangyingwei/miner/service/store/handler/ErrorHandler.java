@@ -24,6 +24,7 @@ public class ErrorHandler implements ITaskErrorHandler {
             logger.error("ERROR-TASK:"+task);
             if(GroupEnum.RSS.getName().equals(task.getGroup()) || GroupEnum.SITE.getName().equals(task.getGroup())){
                 this.resourcesAction.unvalid(task);
+                logger.info("invalid task - " + task);
             }
             logger.error(""+task.getUrl());
         } catch (MinerServiceException e) {

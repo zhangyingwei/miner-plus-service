@@ -2,6 +2,9 @@ package com.zhangyingwei.miner.service.utils;
 
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,14 +53,14 @@ public class DateUtils {
         }
     }
 
-    private static String formateDateTime(Date date) {
+    public static String formateDateTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
     }
 
     public static void main(String[] args) {
-        String date = "2017-03-23T07:40:26.000Z";
-        System.out.println(DateTime.parse(date).toDate());
+//        String date = "2017-01-01 04:59:22";
+        System.out.println(DateTime.parse(new Date().toString()));
     }
 
     public static Date dateTimeToDate(String dateTime){

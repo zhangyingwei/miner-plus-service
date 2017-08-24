@@ -6,6 +6,9 @@
         <!--<rule type="or">.article</rule>-->
         <!--<rule type="not">title</rule>-->
     <!--</selector>-->
+    <selector key="default">
+        <rule type="and">article</rule>
+    </selector>
     <selector key="blog.zhangyingwei.com">
         <rule type="and">article</rule>
     </selector>
