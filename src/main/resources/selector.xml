@@ -22,4 +22,17 @@
         <rule type="not">header</rule>
         <rule type="not">footer</rule>
     </selector>
+    <selector key="ourjs.com" >
+        <rule type="and">#article</rule>
+        <rule type="and">#content</rule>
+    </selector>
+    <selector key="blogcn.com" >
+        <rule type="and">.entry-content</rule>
+    </selector>
+    <selector key="barretlee.com" >
+        <rule type="and">.post</rule>
+    </selector>
+    <selector key="juejin.im" >
+        <rule type="and">.entry-content</rule>
+    </selector>
 </selectors>
