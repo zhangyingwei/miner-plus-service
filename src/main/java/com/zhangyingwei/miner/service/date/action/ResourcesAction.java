@@ -1,7 +1,8 @@
 package com.zhangyingwei.miner.service.date.action;
 
 import com.zhangyingwei.cockroach.executer.Task;
-import com.zhangyingwei.cockroach.executer.TaskQueue;
+import com.zhangyingwei.cockroach.queue.CockroachQueue;
+import com.zhangyingwei.cockroach.queue.TaskQueue;
 import com.zhangyingwei.miner.service.date.model.Resources;
 import com.zhangyingwei.miner.service.date.service.ResourcesService;
 import com.zhangyingwei.miner.service.exception.MinerServiceException;
@@ -20,10 +21,10 @@ public class ResourcesAction {
         this.resourcesService = new ResourcesService();
     }
 
-    public TaskQueue bulidTaskQueue() throws MinerServiceException {
+    public CockroachQueue bulidTaskQueue() throws MinerServiceException {
         logger.info("准备入队...");
         List<Resources> res = this.resourcesService.listNolamResources();
-        final TaskQueue queue = TaskQueue.of(1024);
+        final CockroachQueue queue = TaskQueue.of(1024);
         res.stream().map(item -> {
             Task task = new Task(item.getResources(),item.getGroup());
             task.setExtr(item);
@@ -31,7 +32,7 @@ public class ResourcesAction {
         }).forEach(item -> {
             try {
                 queue.push(item);
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 logger.error(e.getMessage());
             }
         });

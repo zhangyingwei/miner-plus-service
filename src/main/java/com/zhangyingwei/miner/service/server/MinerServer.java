@@ -1,8 +1,8 @@
 package com.zhangyingwei.miner.service.server;
 
-import com.zhangyingwei.cockroach.CockroachContext;
-import com.zhangyingwei.cockroach.config.CockroachConfig;
-import com.zhangyingwei.cockroach.executer.TaskQueue;
+import com.zhangyingwei.cockroach.CockroachApplication;
+import com.zhangyingwei.cockroach.annotation.*;
+import com.zhangyingwei.cockroach.queue.CockroachQueue;
 import com.zhangyingwei.miner.service.date.action.ResourcesAction;
 import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import com.zhangyingwei.miner.service.store.MinerStore;
@@ -12,10 +12,15 @@ import org.apache.log4j.Logger;
 /**
  * Created by zhangyw on 2017/8/15.
  */
+@EnableAutoConfiguration
+@AppName("Miner 服务端")
+@Store(MinerStore.class)
+@ThreadConfig(num = 10, sleep = 5000)
+@AutoClose(true)
+@TaskErrorHandlerConfig(ErrorHandler.class)
 public class MinerServer {
 
     private Logger logger = Logger.getLogger(MinerServer.class);
-
     private ResourcesAction resourcesAction;
 
     public MinerServer() {
@@ -23,17 +28,10 @@ public class MinerServer {
     }
 
     public void start() throws MinerServiceException {
-        CockroachConfig config = new CockroachConfig()
-                .setAppName("Miner 服务端")
-                .setStore(MinerStore.class)
-                .setThread(1, 5000)
-                .setAutoClose(true)
-                .setTaskErrorHandler(ErrorHandler.class);
-        CockroachContext context = new CockroachContext(config);
-        TaskQueue queue = this.resourcesAction.bulidTaskQueue();
+        CockroachQueue queue = this.resourcesAction.bulidTaskQueue();
         try {
-            context.start(queue);
-        } catch (IllegalAccessException | InstantiationException e) {
+            CockroachApplication.run(MinerServer.class,queue);
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }
