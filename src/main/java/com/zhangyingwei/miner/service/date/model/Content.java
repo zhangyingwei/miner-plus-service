@@ -139,7 +139,7 @@ public class Content {
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", description='" + description + '\'' +
-                ", content='" + content + '\'' +
+//                ", content='" + content + '\'' +
                 ", pubdate='" + pubdate + '\'' +
                 ", getdate='" + getdate + '\'' +
                 ", topic='" + topic + '\'' +

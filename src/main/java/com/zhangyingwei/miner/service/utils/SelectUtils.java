@@ -8,29 +8,49 @@ import org.jsoup.select.Elements;
  * Created by zhangyw on 2018/1/26.
  */
 public class SelectUtils {
-    public static String getRulResult(Rule rule, Element element) {
-        if (rule.isText()) {
-            return element.text();
+    public static String getRulResult(Rule rule, Element elements) {
+        String result = "";
+        if (rule.is("text")) {
+            result = elements.text();
         } else if (rule.isAttr()) {
-            return element.attr(rule.getAttr());
+            result = elements.attr(rule.getAttr());
         } else if (rule.isName("site")) {
-            return rule.getSelector();
+            result = rule.getSelector();
         } else if (rule.isName("author")) {
-            return rule.getSelector();
+            result = rule.getSelector();
+        } else if (rule.is("html")) {
+            result = elements.html();
         }
-        return "";
+        if (rule.hasLengthLimit()) {
+            int from = rule.getLengthFrom();
+            int to = rule.getLengthTo();
+            if (result.length() > to) {
+                result = result.substring(from, to);
+            }
+        }
+        return result;
     }
 
     public static String getRulResult(Rule rule, Elements elements) {
-        if (rule.isText()) {
-            return elements.text();
+        String result = "";
+        if (rule.is("text")) {
+            result = elements.text();
         } else if (rule.isAttr()) {
-            return elements.attr(rule.getAttr());
+            result = elements.attr(rule.getAttr());
         } else if (rule.isName("site")) {
-            return rule.getSelector();
+            result = rule.getSelector();
         } else if (rule.isName("author")) {
-            return rule.getSelector();
+            result = rule.getSelector();
+        } else if (rule.is("html")) {
+            result = elements.html();
         }
-        return "";
+        if (rule.hasLengthLimit()) {
+            int from = rule.getLengthFrom();
+            int to = rule.getLengthTo();
+            if (result.length() > to) {
+                result = result.substring(from, to);
+            }
+        }
+        return result;
     }
 }

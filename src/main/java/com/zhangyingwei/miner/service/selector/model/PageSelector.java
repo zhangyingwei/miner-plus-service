@@ -23,7 +23,8 @@ public class PageSelector {
             String key = el.getName();
             String value = el.getText();
             String id = el.attributeValue("id");
-            selecterMap.put(key, new Rule(id,key,value));
+            String length = el.attributeValue("length");
+            selecterMap.put(key, new Rule(id,key,value,length));
         });
     }
 

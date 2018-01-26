@@ -14,9 +14,9 @@
             <site id="sitename">深度开源-OPEN开发经验库</site>
             <author id="author">深度开源-OPEN开发经验库</author>
             <title id="text" >h1</title>
-            <content id="text" >article123</content>
+            <content id="html" >article</content>
             <description id="attr.content" >meta[name='description']</description>
-            <pubdate id="text">.meta .item</pubdate>
+            <pubdate id="text" length="0-19">.meta .item</pubdate>
         </page>
     </selector>
 </selectors>

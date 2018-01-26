@@ -12,11 +12,18 @@ public class Rule {
     private String id;
     private String name;
     private String selector;
+    private int lengthFrom = 0;
+    private int lengthTo = 0;
 
-    public Rule(String id, String name, String selector) {
+    public Rule(String id, String name, String selector,String length) {
         this.id = id;
         this.name = name;
         this.selector = selector;
+        if (length != null && length.contains("-")) {
+            String[] tmp = length.split("-");
+            this.lengthFrom = Integer.parseInt(tmp[0]);
+            this.lengthTo = Integer.parseInt(tmp[1]);
+        }
     }
 
     public String getId() {
@@ -39,8 +46,8 @@ public class Rule {
         return this.getId().startsWith("attr.");
     }
 
-    public boolean isText() {
-        return "text".equals(this.getId());
+    public boolean is(String name) {
+        return name.equals(this.getId());
     }
 
     public String getAttr() {
@@ -49,5 +56,17 @@ public class Rule {
 
     public boolean isName(String name) {
         return name.equals(this.name);
+    }
+
+    public int getLengthFrom() {
+        return lengthFrom;
+    }
+
+    public int getLengthTo() {
+        return lengthTo;
+    }
+
+    public boolean hasLengthLimit() {
+        return this.lengthTo > 0;
     }
 }
