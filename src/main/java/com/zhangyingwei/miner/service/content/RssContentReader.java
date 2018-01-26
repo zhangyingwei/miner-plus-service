@@ -42,6 +42,7 @@ public class RssContentReader implements ContentReader {
             cont.setSite(feed.getLink());
             cont.setTitle(syndEntry.getTitle());
             cont.setUrl(syndEntry.getLink());
+            cont.setDescription(syndEntry.getDescription().getValue());
             cont.setAuthor(feed.getAuthor());
             cont.setPubdate(DateUtils.formateDateTime(Optional.ofNullable(syndEntry.getPublishedDate()).orElse(new Date())));
             cont.setGetdate(DateUtils.getCurrentDateTime());

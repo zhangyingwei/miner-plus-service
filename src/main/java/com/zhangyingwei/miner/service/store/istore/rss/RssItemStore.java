@@ -1,6 +1,6 @@
 package com.zhangyingwei.miner.service.store.istore.rss;
 
-import com.zhangyingwei.cockroach.executer.TaskResponse;
+import com.zhangyingwei.cockroach.executer.response.TaskResponse;
 import com.zhangyingwei.cockroach.store.IStore;
 import com.zhangyingwei.miner.service.date.model.Content;
 import com.zhangyingwei.miner.service.selector.MinerSelector;
@@ -13,27 +13,19 @@ import org.jsoup.select.Elements;
 /**
  * Created by zhangyw on 2017/8/16.
  */
-public class RssContentStore implements IStore {
-
-    Logger logger = Logger.getLogger(RssContentStore.class);
-
-    private MinerSelector minerSelector;
-
+public class RssItemStore implements IStore {
+    Logger logger = Logger.getLogger(RssItemStore.class);
     private RssContentAction rssContentAction;
 
-    public RssContentStore(MinerSelector selector) {
-        this.minerSelector = selector;
+    public RssItemStore() {
         this.rssContentAction = new RssContentAction();
     }
 
     @Override
     public void store(TaskResponse taskResponse) throws Exception {
-        String key = taskResponse.getTask().getUrl();
-        Selector selector = minerSelector.getSelector(key);
-        Elements result = selector.select(taskResponse.getContent());
-        Content content = ContentCache.get(key);
-        content.setContent(result.toString());
+//        Content content = ContentCache.get(key);
+//        content.setContent(result.toString());
 //        logger.info("-----------------"+content);
-        this.rssContentAction.addNewContent(content);
+//        this.rssContentAction.addNewContent(content);
     }
 }

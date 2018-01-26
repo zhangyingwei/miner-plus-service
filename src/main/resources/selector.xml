@@ -6,113 +6,17 @@
         <!--<rule type="or">.article</rule>-->
         <!--<rule type="not">title</rule>-->
     <!--</selector>-->
-    <selector key="default">
-        <rule type="and">article</rule>
+    <selector key="www.open-open.com" >
+        <item>
+            <url id="attr.href" >ul.list>li a</url>
+        </item>
+        <page>
+            <site id="sitename">深度开源-OPEN开发经验库</site>
+            <author id="author">深度开源-OPEN开发经验库</author>
+            <title id="text" >h1</title>
+            <content id="text" >article123</content>
+            <description id="attr.content" >meta[name='description']</description>
+            <pubdate id="text">.meta .item</pubdate>
+        </page>
     </selector>
-    <selector key="blog.zhangyingwei.com">
-        <rule type="and">article</rule>
-    </selector>
-    <selector key="blog.my-eclipse.cn" >
-        <rule type="and">article</rule>
-        <rule type="not">.visible-xs</rule>
-        <rule type="not">.hidden-xs</rule>
-    </selector>
-    <selector key="ibruce.info" >
-        <rule type="and">article</rule>
-        <rule type="not">header</rule>
-        <rule type="not">footer</rule>
-    </selector>
-    <selector key="ourjs.com" >
-        <rule type="and">#article</rule>
-        <rule type="and">#content</rule>
-    </selector>
-    <selector key="blogcn.com" >
-        <rule type="and">.entry-content</rule>
-    </selector>
-    <selector key="barretlee.com" >
-        <rule type="and">.post</rule>
-    </selector>
-    <selector key="juejin.im" >
-        <rule type="and">.entry-content</rule>
-    </selector>
-    <selector key="blog.guoyu.me" >
-        <rule type="and">.article</rule>
-    </selector>
-    <selector key="blog.phpha.com" >
-        <rule type="and">.post-content</rule>
-    </selector>
-    <selector key="blog.sina.com.cn" >
-        <rule type="and">.content</rule>
-    </selector>
-    <selector key="blog.yufeng.info" >
-        <rule type="and">.content</rule>
-    </selector>
-    <selector key="calvin1978.blogcn.com" >
-        <rule type="and">.entry-content</rule>
-    </selector>
-    <selector key="dailyoutfit.lofter.com" >
-        <rule type="and">.m-posts</rule>
-        <rule type="and">.cont</rule>
-    </selector>
-    <selector key="jser.me" >
-        <rule type="and">section</rule>
-    </selector>
-    <selector key="shangjiacheng.lofter.com" >
-        <rule type="and">.main</rule>
-        <rule type="and">.content</rule>
-    </selector>
-    <selector key="shuxiaomiao.lofter.com" >
-        <rule type="and">.m-post</rule>
-    </selector>
-    <selector key="stylechen.com" >
-        <rule type="and">.article_box</rule>
-        <rule type="and">.entry</rule>
-    </selector>
-    <selector key="alloyteam.com" >
-        <rule type="and">.content_banner</rule>
-    </selector>
-    <selector key="blogjava.net" >
-        <rule type="and">.post</rule>
-    </selector>
-    <selector key="codeceo.com" >
-        <rule type="and">.article-entry</rule>
-    </selector>
-    <selector key="dengzhr.com" >
-        <rule type="and">.article-body</rule>
-    </selector>
-    <selector key="freebuf.com" >
-        <rule type="and">.articlecontent</rule>
-    </selector>
-    <selector key="hehongbo.com" >
-        <rule type="and">.art_main1</rule>
-        <rule type="and">.article_content</rule>
-    </selector>
-    <selector key="ihacksoft.com" >
-        <rule type="and">.post</rule>
-        <rule type="and">.post-content</rule>
-    </selector>
-    <selector key="importnew.com" >
-        <rule type="and">.entry</rule>
-    </selector>
-    <selector key="importnew.com" >
-        <rule type="and">#content</rule>
-        <rule type="not">.post_date</rule>
-        <rule type="not">.postmeta</rule>
-    </selector>
-    <selector key="yihanzhang.com" >
-        <rule type="and">.post-content</rule>
-    </selector>
-    <selector key="ifeve.com" >
-        <rule type="and">.post_content</rule>
-        <rule type="not">.abh_box</rule>
-        <rule type="not">.wpfp-span</rule>
-        <rule type="not">.yarpp-related</rule>
-    </selector>
-    <selector key="ifeve.com" >
-        <rule type="and">#article</rule>
-        <rule type="not">.blog-post-title</rule>
-        <rule type="not">.info</rule>
-        <rule type="not">.yarpp-related</rule>
-    </selector>
-
 </selectors>

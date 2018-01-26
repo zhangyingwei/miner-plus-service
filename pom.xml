@@ -10,9 +10,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zhangyingwei.cockroach</groupId>
+            <groupId>com.github.zhangyingwei</groupId>
             <artifactId>cockroach</artifactId>
-            <version>1.0-Alpha</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>

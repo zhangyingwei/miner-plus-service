@@ -5,8 +5,10 @@ package com.zhangyingwei.miner.service.store;
  */
 public enum GroupEnum {
     RSS("rss"),
-    RSSENTITY("rssentity"),
-    SITE("site");
+    RSSENTITY("rss.entity"),
+    SITE("site"),
+    SITEITEMPAGE("site.item.page"),
+    SITEITEM("site.item");
 
     private String name;
     GroupEnum(String name) {

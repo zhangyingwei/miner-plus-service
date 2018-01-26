@@ -2,7 +2,7 @@ package com.zhangyingwei.miner.service.server;
 
 import com.zhangyingwei.cockroach.CockroachContext;
 import com.zhangyingwei.cockroach.config.CockroachConfig;
-import com.zhangyingwei.cockroach.executer.TaskQueue;
+import com.zhangyingwei.cockroach.queue.CockroachQueue;
 import com.zhangyingwei.miner.service.date.action.ResourcesAction;
 import com.zhangyingwei.miner.service.exception.MinerServiceException;
 import com.zhangyingwei.miner.service.store.MinerStore;
@@ -26,14 +26,14 @@ public class MinerServer {
         CockroachConfig config = new CockroachConfig()
                 .setAppName("Miner 服务端")
                 .setStore(MinerStore.class)
-                .setThread(1, 5000)
+                .setThread(1, 1000)
                 .setAutoClose(true)
                 .setTaskErrorHandler(ErrorHandler.class);
         CockroachContext context = new CockroachContext(config);
-        TaskQueue queue = this.resourcesAction.bulidTaskQueue();
+        CockroachQueue queue = this.resourcesAction.bulidTaskQueue();
         try {
             context.start(queue);
-        } catch (IllegalAccessException | InstantiationException e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }

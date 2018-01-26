@@ -26,6 +26,7 @@ public class Content {
     private String site;
     private String title;
     private String url;
+    private String description;
     private String content;
     private String pubdate;
     private String getdate;
@@ -120,6 +121,14 @@ public class Content {
         this.state = state;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Content{" +
@@ -129,6 +138,7 @@ public class Content {
                 ", site='" + site + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", pubdate='" + pubdate + '\'' +
                 ", getdate='" + getdate + '\'' +

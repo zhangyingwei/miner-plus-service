@@ -1,6 +1,7 @@
 package com.zhangyingwei.miner.service.store.handler;
 
-import com.zhangyingwei.cockroach.executer.Task;
+import com.zhangyingwei.cockroach.executer.response.TaskErrorResponse;
+import com.zhangyingwei.cockroach.executer.task.Task;
 import com.zhangyingwei.cockroach.http.handler.ITaskErrorHandler;
 import com.zhangyingwei.miner.service.date.action.ResourcesAction;
 import com.zhangyingwei.miner.service.exception.MinerServiceException;
@@ -19,7 +20,9 @@ public class ErrorHandler implements ITaskErrorHandler {
         this.resourcesAction = new ResourcesAction();
     }
 
-    public void error(Task task, String message) {
+    @Override
+    public void error(TaskErrorResponse response) {
+        Task task = response.getTask();
         try {
             logger.error("ERROR-TASK:"+task);
             if(GroupEnum.RSS.getName().equals(task.getGroup()) || GroupEnum.SITE.getName().equals(task.getGroup())){
@@ -28,7 +31,7 @@ public class ErrorHandler implements ITaskErrorHandler {
             }
             logger.error(""+task.getUrl());
         } catch (MinerServiceException e) {
-//            System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

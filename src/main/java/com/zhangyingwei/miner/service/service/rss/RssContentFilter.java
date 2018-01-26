@@ -3,6 +3,7 @@ package com.zhangyingwei.miner.service.service.rss;
 import com.zhangyingwei.miner.service.date.model.Content;
 import com.zhangyingwei.miner.service.filter.MinerFilter;
 import com.zhangyingwei.miner.service.utils.DateUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.regex.Matcher;
@@ -17,7 +18,9 @@ public class RssContentFilter implements MinerFilter {
     @Override
     public <T> T filter(T t) {
         Content content = (Content) t;
-        content.setContent(this.htmlContentFormate(content.getContent()));
+        if (StringUtils.isNotBlank(content.getContent())) {
+            content.setContent(this.htmlContentFormate(content.getContent()));
+        }
         content.setPubdate(this.pubDateFormate(content.getPubdate()));
         return (T) content;
     }

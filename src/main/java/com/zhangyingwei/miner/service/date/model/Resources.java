@@ -10,8 +10,8 @@ public class Resources {
     public static final Integer FLAG_DEL = 3;
     private Integer id;
     private String resources;
-    private String group;
-    private String type;
+    private String rgroup;
+    private String rtype;
     private String createdate;
     private String updatedate;
     private Integer flag;
@@ -30,14 +30,6 @@ public class Resources {
 
     public void setResources(String resources) {
         this.resources = resources;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getCreatedate() {
@@ -64,12 +56,20 @@ public class Resources {
         this.flag = flag;
     }
 
-    public String getGroup() {
-        return group;
+    public String getRgroup() {
+        return rgroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setRgroup(String rgroup) {
+        this.rgroup = rgroup;
+    }
+
+    public String getRtype() {
+        return rtype;
+    }
+
+    public void setRtype(String rtype) {
+        this.rtype = rtype;
     }
 
     @Override
@@ -77,8 +77,8 @@ public class Resources {
         return "Resources{" +
                 "id=" + id +
                 ", resources='" + resources + '\'' +
-                ", group='" + group + '\'' +
-                ", type='" + type + '\'' +
+                ", group='" + rgroup + '\'' +
+                ", type='" + rtype + '\'' +
                 ", createdate='" + createdate + '\'' +
                 ", updatedate='" + updatedate + '\'' +
                 ", flag=" + flag +
