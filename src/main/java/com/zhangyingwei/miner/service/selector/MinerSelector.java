@@ -28,7 +28,7 @@ public class MinerSelector {
 
     public MinerSelector read() throws DocumentException {
         SAXReader reader = new SAXReader();
-        this.path = this.getClass().getResource(this.path).getPath();
+//        this.path = this.getClass().getResource(this.path).getPath();
         Document doc = reader.read(new File(this.path));
         Element root = doc.getRootElement();
         root.elements(QName.get("selector")).forEach(sel -> {

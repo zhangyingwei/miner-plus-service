@@ -28,7 +28,7 @@ public class SiteStore implements IStore {
 
     public SiteStore() {
         this.siteItemStore = new SiteItemStore();
-        this.minerSelector = new MinerSelector("/selector.xml");
+        this.minerSelector = new MinerSelector("/root/selector.xml");
         try {
             this.minerSelector.read();
         } catch (DocumentException e) {
